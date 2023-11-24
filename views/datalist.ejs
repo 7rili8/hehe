@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <%= user %>
+    <h1>User Data List</h1>
+    <ul>
+        <% userData.forEach(user => { %>
+            <li>Name: <%= user.name %>, Age: <%= user.age %>, Status: <%= user.status %></li>
+            <!-- Add more formatting as needed -->
+        <% }); %>
+    </ul>
 </body>
 </html>

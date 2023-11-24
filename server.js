@@ -36,11 +36,22 @@ app.post('/info', async (req,res)=>{
 });
 
 app.get('/datalist', async (req,res)=>{
-    try{
-        const data = await user.find({});
-        res.render('datalist',{user:data});
-    }catch(error){
+    try {
+        const userData = await user.find({});
 
+        // Format the data before rendering it in the view
+        const formattedData = userData.map(user => {
+            return {
+                name: user.name,
+                age: user.age,
+                status: user.alive ? 'Alive' : 'Not Alive'
+                // You can add more formatting as needed
+            };
+        });
+
+        res.render('datalist', { userData: formattedData });
+    } catch (error) {
+        res.status(500).send('Internal Server Error');
     }
     
 })
